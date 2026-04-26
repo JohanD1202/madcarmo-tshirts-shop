@@ -1,8 +1,7 @@
-// app/page.tsx
-import { getAllProducts } from '@/lib/repositories/productRepository'
+import { getTshirts } from '@/lib/services/tshirts_service'
 
 export default async function Home() {
-  const products = await getAllProducts()
+  const products = await getTshirts()
   
   return (
     <main className="container mx-auto px-4 py-8">
