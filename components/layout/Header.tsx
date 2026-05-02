@@ -1,10 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
-import { Search, ShoppingCart } from 'lucide-react'
+import { Search, ShoppingCart, User } from 'lucide-react'
 import ButtonTextBar from '../header/ButtonTextBar'
-import logo from '@/public/images/logo_printerest.webp'
 
 export default function Header() {
   const [indiceWidget, setIndiceWidget] = useState(0)
@@ -43,54 +41,48 @@ export default function Header() {
         <div className="flex-1" />
       </div>
 
-      {/* 🔸 Logo + búsqueda */}
-      <div className="flex items-start">
-        <div className="flex-1" />
+      {/* 🔸 Navbar */}
+      <div className="relative flex items-center justify-between py-4 px-6">
 
-        <Image
-          src={logo}
-          alt="Logo de la tienda"
-          className="w-[150px] h-auto"
-          priority
-        />
+        {/* 🔹 IZQUIERDA */}
+        <div className="flex items-center gap-8">
+          <ButtonTextBar text="Inicio" onClick={() => setIndiceWidget(0)} />
+          <ButtonTextBar text="Hombre" onClick={() => setIndiceWidget(1)} />
+          <ButtonTextBar text="Mujer" onClick={() => setIndiceWidget(2)} />
+          <ButtonTextBar text="Niño" onClick={() => setIndiceWidget(3)} />
+          <ButtonTextBar text="Niña" onClick={() => setIndiceWidget(4)} />
+          <ButtonTextBar text="Guía de Tallas" onClick={() => setIndiceWidget(8)} />
+        </div>
 
-        <div className="px-[300px] pt-[50px]">
+        {/* 🔹 CENTRO (LOGO TEXTO) */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[60%]">
+          <span className="text-3xl font-semibold tracking-[0.1em]">
+            Madcarmo
+          </span>
+        </div>
+
+        {/* 🔹 DERECHA */}
+        <div className="flex items-center gap-6">
+
+          {/* 👤 Usuario */}
+          <button className="hover:bg-gray-200 p-2 rounded">
+            <User size={26} />
+          </button>
+
+          {/* 🛒 */}
+          <button onClick={() => setIndiceWidget(7)}>
+            <ShoppingCart size={26} />
+          </button>
+
+          {/* 🔍 */}
           <button
             onClick={() => setIndiceWidget(5)}
-            className="hover:bg-gray-300 p-2 rounded"
+            className="hover:bg-gray-200 p-2 rounded"
           >
-            <Search size={40} />
+            <Search size={26} />
           </button>
+
         </div>
-      </div>
-
-      {/* 🔸 Navbar */}
-      <div className="flex items-center py-2">
-        <div className="flex-1" />
-
-        <ButtonTextBar text="Inicio" onClick={() => setIndiceWidget(0)} />
-        <div className="w-[50px]" />
-
-        <ButtonTextBar text="Hombre" onClick={() => setIndiceWidget(1)} />
-        <div className="w-[50px]" />
-
-        <ButtonTextBar text="Mujer" onClick={() => setIndiceWidget(2)} />
-        <div className="w-[50px]" />
-
-        <ButtonTextBar text="Niño" onClick={() => setIndiceWidget(3)} />
-        <div className="w-[50px]" />
-
-        <ButtonTextBar text="Niña" onClick={() => setIndiceWidget(4)} />
-        <div className="w-[50px]" />
-
-        <ButtonTextBar text="Guía de Tallas" onClick={() => setIndiceWidget(8)} />
-        <div className="w-[50px]" />
-
-        <button onClick={() => setIndiceWidget(7)}>
-          <ShoppingCart size={30} />
-        </button>
-
-        <div className="flex-1" />
       </div>
     </div>
   )
